@@ -3,12 +3,12 @@ clc
 close all
 
 % figure 8 and 9
-
+% 
 % fullFileName = '../EstiParams/Breast_0520_4_2_All_Patch_55_linear_expo.mat';
 % load(fullFileName,"sample_str", 'V',"O2", "hypoxia_data", "hypoxia_calculated","all_minimums","dx", "sz1", "sz2");
 
 
-fullFileName = '1087_patch1_sol.mat';
+fullFileName = '../EstiParams/1087_patch1_sol.mat';
 load(fullFileName);
 sz1 = size(X,1);
 sz2 = size(X,2);
@@ -44,10 +44,13 @@ colormap(flipud(hot))
 colorbar
 % colorbar(ax1,'Ticks', 0:0.1*temp_max_sol:temp_max_sol );
 axis tight
-drawnow
 title('Oxygen ', 'Fontsize', 15);
-xlabel('X (in pixels)' , 'Fontsize', 15, 'interpreter','latex');
-ylabel('Y (in pixels)' , 'Fontsize', 15, 'interpreter','latex');
+ax = gca;
+ax.XAxis.Exponent = 4;
+ax.YAxis.Exponent = 4;
+set(gca,'FontSize',14,FontWeight = "bold");
+xlabel('X (in pixels)' , 'Fontsize', 15);
+ylabel('Y (in pixels)' , 'Fontsize', 15);
 saveas(f,strcat('Plots_colorHot/Eps_files/Oxygen', sample_str),'epsc');
 saveas(f,strcat('Plots_colorHot/Png_files/Oxygen', sample_str,'.png'));
 
@@ -64,9 +67,13 @@ shading interp
 % colormap(cmap);        %activate given colormap
 axis tight
 title('CD31 Marker Density', 'Fontsize', 15);
+ax = gca;
+ax.XAxis.Exponent = 4;
+ax.YAxis.Exponent = 4;
+set(gca,'FontSize',14,FontWeight = "bold");
 
-xlabel('X (in pixels)' , 'Fontsize', 15, 'interpreter','latex');
-ylabel('Y (in pixels)' , 'Fontsize', 15, 'interpreter','latex');
+xlabel('X (in pixels)' , 'Fontsize', 15);
+ylabel('Y (in pixels)' , 'Fontsize', 15);
 
 saveas(f,strcat('Plots_colorHot/Eps_files/Blood_Vessels', sample_str),'epsc');
 saveas(f,strcat('Plots_colorHot/Png_files/Blood_Vessels', sample_str,'.png'));
@@ -83,8 +90,12 @@ shading interp
 % colormap(cmap);        %activate given colormap
 axis tight
 title('CA9 Marker Density ', 'Fontsize', 15);
-xlabel('X (in pixels)' , 'Fontsize', 15, 'interpreter','latex');
-ylabel('Y (in pixels)' , 'Fontsize', 15, 'interpreter','latex');
+ax = gca;
+ax.XAxis.Exponent = 4;
+ax.YAxis.Exponent = 4;
+set(gca,'FontSize',14,FontWeight = "bold");
+xlabel('X (in pixels)' , 'Fontsize', 15);
+ylabel('Y (in pixels)' , 'Fontsize', 15);
 
 saveas(f,strcat('Plots_colorHot/Eps_files/Hypoxia', sample_str),'epsc');
 saveas(f,strcat('Plots_colorHot/Png_files/Hypoxia', sample_str,'.png'));
@@ -103,9 +114,12 @@ shading interp
 % colormap(cmap);        %activate given colormap
 axis tight
 title('Predicted Hypoxia ', 'Fontsize', 15);
-
-xlabel('X (in pixels)' , 'Fontsize', 15, 'interpreter','latex');
-ylabel('Y (in pixels)' , 'Fontsize', 15, 'interpreter','latex');
+ax = gca;
+ax.XAxis.Exponent = 4;
+ax.YAxis.Exponent = 4;
+set(gca,'FontSize',14,FontWeight = "bold");
+xlabel('X (in pixels)' , 'Fontsize', 15);
+ylabel('Y (in pixels)' , 'Fontsize', 15);
 
 saveas(f,strcat('Plots_colorHot/Eps_files/Computed_Hypo', sample_str),'epsc');
 saveas(f,strcat('Plots_colorHot/Png_files/Computed_Hypo', sample_str,'.png'));
