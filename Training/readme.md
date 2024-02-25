@@ -6,12 +6,9 @@ The primary MATLAB script that orchestrates the simulation of the 2-D model in d
 ## Functions
 
 ### `createMask_i(i = sample name)`
-```matlab
-% Thresholds an image to select the CD31 OR CA9 staining using auto-generated code
-% from the colorThresholder app in MATLAB.
-function createMask_i(i)
-    % Your code here
-end
+Thresholds an image to select the CD31 OR CA9 staining using auto-generated code
+from the colorThresholder app in MATLAB.
+
 ### find_density_mask
 Function for finding density masks.
 
