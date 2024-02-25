@@ -48,5 +48,7 @@ To execute the scripts, MATLAB with the Global Optimization Toolbox, Image Proce
 
 ## Other Files and Folders
 Archive: It includes a function designed to visualize the outcomes of training by utilizing the trained parameters.
+
 EstiParams: The folder where the trained parameters are saved in .mat file format.
+
 All_Params.csv: A table storing the trained parameters for all samples.
