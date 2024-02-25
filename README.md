@@ -21,7 +21,7 @@ The "Training" directory holds scripts responsible for:
 # Solving elliptic PDE numerically
 # Optimization for parameter estimation
 # Generating plots for the training dataset
-```bash
+```
 
 ### Validation
 In the "Validation" directory, you will find scripts dedicated to the validation of predictions derived from the modeling framework.
