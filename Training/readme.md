@@ -39,7 +39,8 @@ Solves the PDE for O2 and the algebraic equation of hypoxia with the obtained pa
 Plots the function value (fval) and other stored parameters.
 
 ## Method
-The method employs a five-point stencil discretization for diffusion. The resulting system of equations is solved using the built-in function fsolve for nonlinear equations.
+For comprehensive information on methods, encompassing data processing, quantification of blood vessel diversity, mathematical modeling of oxygen and hypoxia, numerical simulation of PDE, parameter estimation, and validation, please consult the "Methods" section in this paper.
+
 
 ## Requirement
 MATLAB with the Global Optimization Toolbox and Parallel Computing Toolbox is necessary to run the scripts.
