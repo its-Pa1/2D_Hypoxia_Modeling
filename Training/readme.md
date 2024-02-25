@@ -1,23 +1,49 @@
-Main files/scripts:
+# Main Files/Scripts
 
-The file "main.m" is the main matlab script which calls all the functions and simulates the 2-D model(dimensional form) for no flux BC for O_2;
+## `main.m`
+The primary MATLAB script that orchestrates the simulation of the 2-D model in dimensional form with no flux boundary conditions for O_2.
 
+## Functions
 
-Functions:
-createMask_i(i = sample name): thresholds image to select the CD31 OR CA9 staining using auto-generated code from the colorThresholder app in MALTAB
-find_density_mask_short: 
-get_density_patches: reads the tiff image and get the densitites of the markers for the choosen pathches
-get_density_patchesII: it also reads the tiff image and get the densitites of the markers for the choosen pathches (these are second set of patches for validation)
-set_const_diff: discretized matrix of linear PDE for O2
-linear_PDE_loss_fun: the loss function for linear model
-non_linear_PDE_loss_fun.m:  the loss function for nonlinear model
-obj_fun_PDE.m: stores the non linear system obtianed from spatial discretization
-get_optimization: calls the chosen matlab optimizer and yields the parameters for the global minimum of the loss function as well as it stores the other minima and the function values therby also.
-solve_with_obtained_param: Solution of PDE for O2 and algebric equation of hypoxia with the obtained paramerters
-plot_fval.m: plots the fval and other parameters stored
+### `createMask_i(i = sample name)`
+```matlab
+% Thresholds an image to select the CD31 OR CA9 staining using auto-generated code
+% from the colorThresholder app in MATLAB.
+function createMask_i(i)
+    % Your code here
+end
+### find_density_mask
+Function for finding density masks.
 
+### get_density_patches
+Reads the TIFF image and calculates marker densities for chosen patches.
 
-Method: five point stencil discretization for the diffusion. The resultant system of equations have been solved using in built function (fsolve for nonlinear);
+### get_density_patchesII
+Reads the TIFF image and calculates marker densities for a second set of patches
 
+### set_const_diff
+Generates a discretized matrix of linear Partial Differential Equation (PDE) for O2.
 
-Requirement: Matlab with gliobal optimization and parallel computing toolbox.
+### linear_PDE_loss_fun
+Loss function for the linear model.
+### non_linear_PDE_loss_fun.m
+Loss function for the nonlinear model.
+
+### obj_fun_PDE.m
+Stores the nonlinear system obtained from spatial discretization.
+### get_optimization
+Calls the chosen MATLAB optimizer, yielding parameters for the global minimum
+of the loss function. It also stores other minima and their corresponding function values.
+
+### solve_with_obtained_param
+Solves the PDE for O2 and the algebraic equation of hypoxia with the obtained parameters.
+
+### plot_fval.m
+Plots the function value (fval) and other stored parameters.
+
+## Method
+The method employs a five-point stencil discretization for diffusion. The resulting system of equations is solved using the built-in function fsolve for nonlinear equations.
+
+## Requirement
+MATLAB with the Global Optimization Toolbox and Parallel Computing Toolbox is necessary to run the scripts.
+
