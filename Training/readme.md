@@ -43,5 +43,10 @@ For comprehensive information on methods, encompassing data processing, quantifi
 
 
 ## Requirement
-MATLAB with the Global Optimization Toolbox and Parallel Computing Toolbox is necessary to run the scripts.
+To execute the scripts, MATLAB with the Global Optimization Toolbox, Image Processing Toolbox, and Parallel Computing Toolbox is required. Additionally, violin plots have been generated using the seaborn library in Python.
 
+
+## Other Files and Folders
+Archive: It includes a function designed to visualize the outcomes of training by utilizing the trained parameters.
+EstiParams: The folder where the trained parameters are saved in .mat file format.
+All_Params.csv: A table storing the trained parameters for all samples.
