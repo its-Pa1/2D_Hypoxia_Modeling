@@ -31,3 +31,5 @@ The "Others" directory is equipped with various scripts aimed at generating plot
 
 Feel free to explore the respective directories to delve into specific aspects of the project. If you have any questions or need further clarification, please don't hesitate to reach out.
 
+## Instruction to use
+Retrieve the image files for both training and validation from the provided link in the article, then transfer them to the corresponding subdirectories within the "Image_folder" directory.
