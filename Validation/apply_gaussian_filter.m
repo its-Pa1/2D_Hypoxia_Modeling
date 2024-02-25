@@ -1,12 +1,6 @@
 function [V,hypoxia_data] = apply_gaussian_filter(V,hypoxia_data)
 
 
-% net = denoisingNetwork('DnCNN');
-% V = denoiseImage(V,net);
-% hypoxia_data = denoiseImage(hypoxia_data,net);
-
-
-
 
 V = imbinarize(V,0);
 V = double(V);

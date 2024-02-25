@@ -5,7 +5,7 @@ function [both_CD31, both_CA9] = setup_image_files()
 %   these files and creates directories to save plots.
 
 % Specify the image folder
-imFolder = '../../../Image_Data/Training_data';
+imFolder = '../Image_data/Training_data';
 
 % Check if the specified folder exists
 if ~isfolder(imFolder)

@@ -8,10 +8,10 @@ addpath("ColorMaskFunctions/");
 %load("0721_IHC_full_sample_validation.mat")
 
 
-I_CD31_full = imread('../../../Image_Data/Validating_data/Ovarian_0721_CD31.tif');
+I_CD31_full = imread('../Image_data/Validating_data/Ovarian_0721_CD31.tif');
 I_CD31_cropped = I_CD31_full(100:end,1300:6650,:);
 
-I_CA9_full = imread('../../../Image_Data/Validating_data/Ovarian_0721_CA9.tif');
+I_CA9_full = imread('../Image_data/Validating_data/Ovarian_0721_CA9.tif');
 I_CA9_cropped = I_CA9_full(100:end,1450:6800,:);
 
 

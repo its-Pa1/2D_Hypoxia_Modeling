@@ -1,8 +1,8 @@
 function filtered_hs = get_the_sorted_params(hscore,numNonZero,trainedParams)
 temp = [];
-threshold = 0.25;
+threshold = 0.1;
 while(isempty(temp))
-    % run a loop for a h-score +-25%
+    % run a loop for a h-score +-10%
                 min_hs = max(0, hscore - hscore*threshold);
                 max_hs = min(1, hscore + hscore*threshold);
 
@@ -23,7 +23,7 @@ while(isempty(temp))
                 mask1 = data_hs2<=max_hs & data_hs2>=min_hs;
                 temp = tempFiltered(mask1,:);
 
-                threshold = threshold + 0.1;
+                threshold = threshold + 0.01;
 
 
 end

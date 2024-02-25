@@ -3,9 +3,9 @@ clc;
 close all;
 
 %figure 16
-imBV = imread('../../../Image_Data/Validating_data/Pancreas_1087_CD31_IFC.tif');
-imDAPI = imread('../../../Image_Data/Validating_data/Pancreas_1087_DAPI_IFC.tif');
-imHy = imread('../../../Image_Data/Validating_data/Pancreas_1087_CA9_IFC.tif');
+imBV = imread('../Image_data/Validating_data/Pancreas_1087_CD31_IFC.tif');
+imDAPI = imread('../Image_data/Validating_data/Pancreas_1087_DAPI_IFC.tif');
+imHy = imread('../Image_data/Validating_data/Pancreas_1087_CA9_IFC.tif');
 
 imBV2 = imBV(:,:,1)';
 

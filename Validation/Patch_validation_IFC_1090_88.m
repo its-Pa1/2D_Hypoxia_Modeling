@@ -3,9 +3,9 @@ clc;
 close all;
 
 % figure 15
-imBV = imread('../../../Image_Data/Training_data/Breast_1090_CD31.tif');
-imDAPI = imread('../../../Image_Data/Training_data/Breast_1090_DAPI.tif');
-imHy = imread('../../../Image_Data/Training_data/Breast_1090_CA9.tif');
+imBV = imread('../Image_data/Training_data/Breast_1090_CD31.tif');
+imDAPI = imread('../Image_data/Training_data/Breast_1090_DAPI.tif');
+imHy = imread('../Image_data/Training_data/Breast_1090_CA9.tif');
 
 
 

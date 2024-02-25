@@ -3,17 +3,17 @@ clc;
 close all;
 % figure 20 
 load('1905_IHC_full_sample_Validation.mat')
-%addpath("../Param/Image_Data");
+%addpath("../Image_Data");
 addpath("T_forms/");
 addpath("ColorMaskFunctions/");
 
 sample_name = '1905_IHC';
 
 trainedParams = readtable("../Training/All_Params.csv");
-I_CD31_full = imread('../../../Image_Data/Validating_data/Pancreas_1905_CD31.tif');
+I_CD31_full = imread('../Image_Data/Validating_data/Pancreas_1905_CD31.tif');
 I_CD31_cropped = I_CD31_full(200:4300,1300:6400,:);
 
-I_CA9_full = imread('../../../Image_Data/Validating_data/Pancreas_1905_CA9.tif');
+I_CA9_full = imread('../Image_Data/Validating_data/Pancreas_1905_CA9.tif');
 I_CA9_cropped = I_CA9_full(200:4300,1200:6300,:);
 
 f_p = '_Pancreas_1905_full_';

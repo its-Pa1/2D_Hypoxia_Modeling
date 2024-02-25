@@ -9,10 +9,10 @@ addpath("ColorMaskFunctions/");
 
 
 f_p = '_patch_4_1087_IHC_';
-I_CD31_full = imread('../../../Image_Data/Validating_data/Pancreas_1087_CD31.tif');
+I_CD31_full = imread('../Image_data/Validating_data/Pancreas_1087_CD31.tif');
 I_CD31_cropped = I_CD31_full(100:end,900:6500,:);
 
-I_CA9_full = imread('../../../Image_Data/Validating_data/Pancreas_1087_CA9.tif');
+I_CA9_full = imread('../Image_data/Validating_data/Pancreas_1087_CA9.tif');
 I_CA9_cropped = I_CA9_full(100:end,700:6300,:);
 
 

@@ -1,22 +1,22 @@
 function [V, hypoxia_data] = apply_gaussian_filter(V, hypoxia_data)
-% APPLY_GAUSSIAN_FILTER applies a Gaussian filter to binary and hypoxia data.
+% APPLY_GAUSSIAN_FILTER applies a Gaussian filter to blood vessels and hypoxia data.
 
 % INPUT:
-%   V: CD31 image data representing blood vessels.
-%   hypoxia_data: CA9 image data.
+%   V: CD31 stained image data representing blood vessels.
+%   hypoxia_data: CA9 stained image data.
 
 % OUTPUT:
 %   V: Binary image data after applying the Gaussian filter.
 %   hypoxia_data: Hypoxia data after applying the Gaussian filter.
 
-% Convert binary image to double
+% Convert the blood vessel image to binary
 V = imbinarize(V, 0);
 V = double(V);
 
 % Convert hypoxia data to double
 hypoxia_data = double(hypoxia_data);
 
-% Apply Gaussian filter to binary image
+% Apply Gaussian filter to binary image representing blood vessels
 hsize = [5, 5];
 sigma = 10;
 h1 = fspecial('gaussian', hsize, sigma);
