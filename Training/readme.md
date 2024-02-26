@@ -15,6 +15,9 @@ It reads and loads marker images for a specific index.
 ### get_density_patches
 It extracts patches from CD31 and CA9 images for analysis.
 
+### apply_gaussian_filter
+It applies a Gaussian filter to blood vessels and hypoxia data.
+
 ### get_optimization
 Calls the chosen MATLAB optimizer, yielding parameters for the global minimum
 of the loss function. It also stores other minima and their corresponding function values.

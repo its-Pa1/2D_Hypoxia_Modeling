@@ -1,5 +1,9 @@
 function [imCrop] = makeCropImage(imBV,imRaw, index)
-
+% This function generates patches from an input blood vessel image.
+% Input: bloodVesselImage - grayscale image of vessels
+%        fullImage - the raw RGB image
+%        patchIndex - the patch number to extract.
+% Output: croppedPatches - the extracted patch
 
 x = 0; % Initial x-coordinate of the top-left corner of the rectangle
 y = 0; % Initial y-coordinate of the top-left corner of the rectangle

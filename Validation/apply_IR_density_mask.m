@@ -1,6 +1,6 @@
 function [G_CD31, G_CA9, I_CD31, I_CA9, G_DAPI] = apply_IR_density_mask(im_CD31,im_CA9, fun_str_CD31, fun_str_CA9, fun_str_DAPI, str1, str2)
 
-% APPLY_IR_DENSITY_MASK performs image registration and density extraction for CD31 and CA9 images o IHC types.
+% APPLY_IR_DENSITY_MASK performs image registration and density extraction for CD31 and CA9 images of IHC types.
 %
 % INPUT:
 %   im_CD31: CD31 image matrix obtained using imread("...tif")
