@@ -33,3 +33,5 @@ Feel free to explore the respective directories to delve into specific aspects o
 
 ## Instruction to use
 Retrieve the image files for both training and validation from the provided link in the article, then transfer them to the corresponding subdirectories within the "Image_folder" directory.
+
+Each directory contains a dedicated readme file to facilitate navigation.
