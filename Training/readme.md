@@ -4,6 +4,7 @@
 The primary MATLAB script that orchestrates the simulation of the 2-D model in dimensional form with no flux boundary conditions for O_2.
 
 ## Functions
+The functions utilized are listed below, presented in the sequence of their application.
 
 ### `createMask_i(i = sample name)`
 Thresholds an image to select the CD31 OR CA9 staining using auto-generated code
