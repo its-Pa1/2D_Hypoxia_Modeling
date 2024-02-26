@@ -2,20 +2,21 @@ clear all
 clc;
 close all;
 
-%figure 16
-imBV = imread('../../../Image_Data/Validating_data/Pancreas_1087_CD31_IFC.tif');
-imDAPI = imread('../../../Image_Data/Validating_data/Pancreas_1087_DAPI_IFC.tif');
-imHy = imread('../../../Image_Data/Validating_data/Pancreas_1087_CA9_IFC.tif');
+%read the whole images
+imBV = imread('../Image_data/Validating_data/Pancreas_1087_CD31_IFC.tif');
+imDAPI = imread('../Image_data/Validating_data/Pancreas_1087_DAPI_IFC.tif');
+imHy = imread('../Image_data/Validating_data/Pancreas_1087_CA9_IFC.tif');
 
 imBV2 = imBV(:,:,1)';
 
 %%
-
+ % get patches
 croppedImages_BV = makeCropImage(imBV2,imBV, 1);
 croppedImages_Hy = makeCropImage(imBV2,imHy, 2);
 croppedImages_DAPI = makeCropImage(imBV2,imDAPI, 3);
 
 
+% make folder for plots
 if not(isfolder('Plots/Plots_Valid_1087IFC'))
     mkdir('Plots/Plots_Valid_1087IFC')
 end
@@ -29,7 +30,8 @@ if not(isfolder('Plots/Plots_Valid_1087IFC/Png_files'))
 end
 
 
-%%
+%% validation for a selected patch
+
 for i = 57 %[24,34,57,69,86]
     testIm_BV = croppedImages_BV{i}; 
     testIm_Hy = croppedImages_Hy{i}; 

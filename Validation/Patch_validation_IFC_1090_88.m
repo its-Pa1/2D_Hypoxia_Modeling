@@ -2,10 +2,10 @@ clear all
 clc;
 close all;
 
-% figure 15
-imBV = imread('../../../Image_Data/Training_data/Breast_1090_CD31.tif');
-imDAPI = imread('../../../Image_Data/Training_data/Breast_1090_DAPI.tif');
-imHy = imread('../../../Image_Data/Training_data/Breast_1090_CA9.tif');
+% read the images
+imBV = imread('../Image_data/Training_data/Breast_1090_CD31.tif');
+imDAPI = imread('../Image_data/Training_data/Breast_1090_DAPI.tif');
+imHy = imread('../Image_data/Training_data/Breast_1090_CA9.tif');
 
 
 
@@ -14,11 +14,12 @@ imBV2 = imBV(:,:,1)';
 
 %%
 
+% get the patches
 croppedImages_BV = makeCropImage(imBV2,imBV, 1);
 croppedImages_Hy = makeCropImage(imBV2,imHy, 2);
 croppedImages_DAPI = makeCropImage(imBV2,imDAPI, 3);
 
-
+% create folder to save plots
 if not(isfolder('Plots/Plots_Valid_1090IFC'))
     mkdir('Plots/Plots_Valid_1090IFC')
 end
@@ -31,7 +32,7 @@ if not(isfolder('Plots/Plots_Valid_1090IFC/Png_files'))
     mkdir('Plots/Plots_Valid_1090IFC/Png_files')
 end
 
-%%
+%% Validation for index i, here selected one
 
 for i = 88 % [78,88,89]
     testIm_BV = croppedImages_BV{i}; 

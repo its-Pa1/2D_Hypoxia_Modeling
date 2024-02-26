@@ -1,16 +1,14 @@
 function [sol_O, hypoxia_calculated] = solve_with_obtained_param(X,V, param, eq_type_str,dx)
 % This function solve the equations with the estimated parameters.
 
-% Input : str, the sample name
+% Input : X, domain
+%       : V, blood vessel density
 %       : param, the estimated parameter vales
 %       : eq_type_str, model type
+%       : dx, step length
 
 % Output :
-%       : X, x-interval of the domain,
-%       : Y, y-interval of the domain,
-%       : V, the blood vessel density obtained from the images of CD31 scan
-%       : O2, the oxygen concentration obtained from the model
-%       : hypoxia_data, the density obtained from the images of CA9 scan
+%       : sol_O, the oxygen concentration obtained from the model
 %       : hypoxia_calculated, the density obtained from the model
 
 
@@ -65,8 +63,4 @@ switch eq_type_str
      
 end
 
-
-
-
-%% Plots
 

@@ -50,7 +50,7 @@ for files in fileNames:
                 labels = [r'$D$', r'$\alpha$', r'$\beta$', r'$\gamma$', r'$k_1$', r'$O_l$', r'$O_h$', r'$H_s$']
                 colors = sns.color_palette("Set1", n_colors=len(labels))
 
-                fig, axes = plt.subplots(figsize=(20,10))
+                fig, axes = plt.subplots(figsize=(10,8))
                 fig.suptitle('Parameter Variation',fontsize=20)
                 fig.supxlabel('Parameters',fontsize=20)
                 fig.supylabel('Values',fontsize=20)

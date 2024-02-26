@@ -1,5 +1,5 @@
 function A_s = set_variable_params_diff_(x,y,D_s, source)
-% This function computes the diffusion matrix for constant diffusion
+% This function computes the diffusion matrix for variable diffusion
 % here usual 5 point stencils has been used for central 
 % difference discretization
 

@@ -1,19 +1,24 @@
 clear all
-clc;
+% This script perform the validation for IHC 1905 whole sample 
+% Either load this workspace or uncomment the "get numclei density part"
+% As the cell-density calculation takes some time.
+
+load('1905_IHC_full_sample_Validation.mat');
+
 close all;
-% figure 20 
-load('1905_IHC_full_sample_Validation.mat')
-%addpath("../Param/Image_Data");
+clc;
+
+%addpath("../Image_Data");
 addpath("T_forms/");
 addpath("ColorMaskFunctions/");
 
 sample_name = '1905_IHC';
 
 trainedParams = readtable("../Training/All_Params.csv");
-I_CD31_full = imread('../../../Image_Data/Validating_data/Pancreas_1905_CD31.tif');
+I_CD31_full = imread('../Image_Data/Validating_data/Pancreas_1905_CD31.tif');
 I_CD31_cropped = I_CD31_full(200:4300,1300:6400,:);
 
-I_CA9_full = imread('../../../Image_Data/Validating_data/Pancreas_1905_CA9.tif');
+I_CA9_full = imread('../Image_Data/Validating_data/Pancreas_1905_CA9.tif');
 I_CA9_cropped = I_CA9_full(200:4300,1200:6300,:);
 
 f_p = '_Pancreas_1905_full_';
@@ -52,7 +57,7 @@ imCrop_CD31 = cell(1,noXDirection*noYDirection); % pre-allocate memory
 imCrop_CA9 = cell(1,noXDirection*noYDirection); % pre-allocate memory
 % im_Hypo_Crop = cell(1,noXDirection*noYDirection); % pre-allocate memory
 count = 1;
-
+% pre-allocate memory
 alpha_full = zeros(sz2, sz1);
 beta_full = zeros(sz2, sz1);
 gamma_full = zeros(sz2, sz1);
@@ -63,11 +68,7 @@ D_full = 1e-8 + zeros(sz2, sz1);
 hetFullImage = zeros(2, noXDirection*noYDirection);
 G_DAPI = double(imbinarize(G_DAPI));
 
-
-
-[ memory_in_use ] = monitor_memory_whos();
-fprintf('Memory in use after loading density is %d: GB \n', memory_in_use);
-
+% loop trhough all the patches
 while(y+height<=sz2)
     while(x+width<=sz1)
 
@@ -79,12 +80,7 @@ while(y+height<=sz2)
         testIm_Hy = imCrop_CA9{count} ;
 
 
-
-
-        [ memory_in_use ] = monitor_memory_whos();
-        fprintf('Memory in use before working on patches is %d GB: \n', memory_in_use);
-
-
+        % check for non-empty patches
         V_max = max(testIm_BV(:));
         Hypo_max = max(testIm_Hy(:));
 
@@ -110,10 +106,7 @@ while(y+height<=sz2)
 
         else
 
-
-            % testIm_BV = testIm(:,:,1);
-            % testIm_BV(testIm_BV<=50) = 0;
-
+            % get hetro score for each patch
             [numNonZero, hscore] = compute_heterogeneity_IHC(testIm_BV);
 
             hetFullImage(1,count) = numNonZero;
@@ -127,10 +120,12 @@ while(y+height<=sz2)
 
 
 
+            % filter the sorted params for similar ptaches
             filtered_hs = get_the_sorted_params(hscore,numNonZero,trainedParams);
 
 
 
+            % get the mean value
             alpha_patch = mean(filtered_hs.alpha);
             beta_patch = mean(filtered_hs.beta);
             gamma_patch = mean(filtered_hs.gamma);
@@ -139,13 +134,12 @@ while(y+height<=sz2)
             k1_patch = mean(filtered_hs.k1);
             D_patch = mean(filtered_hs.D);
 
-            if(isnan(alpha_patch))
-                return;
-            end
+           
 
             % Assign the het values
             hetPlotValues(top_left_y:bottom_right_y, top_left_x:bottom_right_x) = hetFullImage(2,count);
 
+            % assign the mean value to a patch
             alpha_full(top_left_y:bottom_right_y, top_left_x:bottom_right_x) = alpha_patch;
             beta_full(top_left_y:bottom_right_y, top_left_x:bottom_right_x) = beta_patch;
             gamma_full(top_left_y:bottom_right_y, top_left_x:bottom_right_x) = gamma_patch;
@@ -172,24 +166,6 @@ while(y+height<=sz2)
 
 end
 
-
-
-
-
-
-
-
-
-
-%%
-% clearvars -except  imCD31 imCA9 trainedParams sz1 sz2 hetPlotValues
-% alpha_full = mean(trainedParams.alpha) + zeros(sz2, sz1);
-% beta_full = mean(trainedParams.beta) + zeros(sz2, sz1);
-% gamma_full = mean(trainedParams.gamma) + zeros(sz2, sz1);
-% Ol_full = mean(trainedParams.Ol) + zeros(sz2, sz1);
-% Oh_full = mean(trainedParams.Oh) + zeros(sz2, sz1);
-% k1_full = mean(trainedParams.k1) + zeros(sz2, sz1);
-% D_full = mean(trainedParams.D) + zeros(sz2, sz1);
 %%
 
 
@@ -225,8 +201,7 @@ Im_Hy = R_CA9;
 
 
 
-%%
-
+%% domain discretization and get the params on the grid
 
 dx = 5;
 
@@ -336,45 +311,23 @@ saveas(f,strcat('Plots/Plots_Valid/Png_files/BV',f_p, '.png'));
 
 %%
 
-% AA = [1,2,3,0.1,4];
-% th1 = [1,2,3,0.1,5];
-% mask11 = AA>=th1;
-% BB = AA;
-% BB(mask11) = 0;
 
 hypoxia_calculated = gamma.*(exp(-k1.* sol_O(:)) ) ;
-% hypoxia_calculated = gamma* (k1./ (k1 + exp(k2*(O2 - k3))));
-%
+
 mask = sol_O(:)<=Ol | sol_O(:)>=Oh; %O2>=O_h;%
 hypoxia_calculated(mask) = 0;
 
 
-%
-% hypoxia_calculated = hypoxia_calculated/(max(eps, max(hypoxia_calculated(:))));
+
 %%
 hypoxia_calculated = reshape(hypoxia_calculated,Lx,Ly);
 
-%%
-
-% f = figure;
-% % f.Visible = 'off';
-% % ax1 = axes;
-% surf(x,y,hypoxia_calculated');
-% view(0,90)
-% shading interp
-% colormap(flipud(hot))
-% colorbar
-% axis tight
-% title('Predicted Hypoxia without cell', FontSize=16);
 
 
-%%
-%
-% %testIm_DAPI = G_DAPI;
-
-% %testIm_DAPI(testIm_DAPI<25) = 0;
-%
-% testIm_DAPI = double(im2gray(I_CD31_cropped));
+%% get numclei density 
+%% in this case of IHC, we only focus on the tissue region in CD31
+% only focus on th
+% testIm_DAPI = double(im2gray(I_CD31_cropped)); 
 % testIm_DAPI(testIm_DAPI>230) = 0;
 % testIm_DAPI = imbinarize(testIm_DAPI,0);
 % cell_den = get_nuclei_density(testIm_DAPI,dx);
@@ -446,6 +399,6 @@ saveas(f,strcat('Plots/Plots_Valid/Png_files/DAPI',f_p, '.png'));
 
 
 %%
-Validation_error = ((norm(hypoxia_calculated - hypoxia_data))^2)/sqrt(sz1*sz2)
+Validation_error = ((norm(hypoxia_calculated - hypoxia_data))^2)/sqrt(sz1*sz2);
 
 toc

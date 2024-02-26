@@ -1,19 +1,24 @@
 function [G_CD31, G_CA9, I_CD31, I_CA9, G_DAPI] = apply_IR_density_mask_II(im_CD31,im_CA9, fun_str_CD31, fun_str_CA9, fun_str_DAPI, str1, str2)
 
-% This function does the registration of the images and apply the gaussian
-% filter on the obtained densities
-% It is used for PDX scans
+% APPLY_IR_DENSITY_MASK_II performs image registration and density extraction for CD31 and CA9 images o IHC types.
 
-% Input : im_CD31, matrix obtained using the imread("...tif") for CD31 scans
-%       : im_CA9, matrix obtained using the imread("...tif") for CA9 scans
-%       : fun_str_CD31, function name for the mask of CD31 scan
-%       : fun_str_CA9, function name for the mask of CA9 scan
-%       : str1, string to get the registration points for a patch or full
-%       : str2, string to get the scan number
-
-% Output:
-%       : G_CA9, normalized density of CA9 in the selected patch
-%       : G_CD31, normalized density of CD31 in the selecred patch
+% It is similar to the its homoname, but doesnt do double binarization
+%
+% INPUT:
+%   im_CD31: CD31 image matrix obtained using imread("...tif")
+%   im_CA9: CA9 image matrix obtained using imread("...tif")
+%   fun_str_CD31: Function name for the mask of CD31 scan
+%   fun_str_CA9: Function name for the mask of CA9 scan
+%   fun_str_DAPI: Function name for the mask of DAPI scan
+%   str1: String to get the registration points for a patch or full
+%   str2: String to get the scan number
+%
+% OUTPUT:
+%   G_CA9: Normalized density of CA9 in the selected patch
+%   G_CD31: Normalized density of CD31 in the selected patch
+%   I_CD31: Registered CD31 image
+%   I_CA9: Registered CA9 image
+%   G_DAPI: Normalized density of DAPI in the selected patch
 
 I_CD31 = (im_CD31);
 I_CA9 = (im_CA9);
@@ -24,8 +29,6 @@ moving = I_CA9;
 
 
 filename1 = strcat('t_form', str2);
-
-
 load(filename1);
 
 
@@ -70,7 +73,6 @@ h2 = fspecial('gaussian',hsize2,sigma2);
 G_CD31 = imfilter(G_CD31,h2,'replicate');
 
 % normalize the densities
-
 % G_CA9 = G_CA9/(max(max(G_CA9)));
 % G_CD31 = G_CD31/(max(max(G_CD31)));
 

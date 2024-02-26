@@ -1,10 +1,12 @@
-%%
+% This script perform the validation for IFC 1087 whole sample 
 clear all;
-% figure 17 
-% clearvars -except  cell_den cell_den2
+% Either load this workspace or uncomment the "get numclei density part"
+% As the cell-density calculation takes some time.
+
 load('1087_IFC_full_sample_Validation.mat')
 clc
 close all;
+
 
 tic
 
@@ -13,15 +15,16 @@ tic
 
 [both_CD31, both_CA9] = setup_image_files();
 
+%load the parameters
 trainedParams = readtable("../Training/All_Params.csv");
 
-% run a loop on each file
 
+% track memory
 [ memory_in_use ] = monitor_memory_whos( );
 fprintf('Memory in use before main loop: %d  GB \n', memory_in_use);
 
 
-
+% create folder to save plots
 if not(isfolder('Plots/Plots_Valid'))
     mkdir('Plots/Plots_Valid')
 end
@@ -34,7 +37,7 @@ end
 
 
 
-
+% choose index for 1087 sample, it is 7 rightnow
 for j = 7 %1: length(both_CD31) % 7
 
     % read and load jth image (both CD31 & CA9)
@@ -42,10 +45,6 @@ for j = 7 %1: length(both_CD31) % 7
     fprintf(1, 'Now reading and working on sample %s\n', sample_name);
     [~, f_p] = fileparts(both_CD31{j}.name);
 
-    % numPtachXDirection = 10;
-    % numPtachYDirection = 10;
-
-    % [sz1, sz2,imCD31, imCA9] = get_density_patches(imCD31, imCA9,numPtachXDirection,numPtachYDirection);
     sz1  = size(imCD31(:,:,1)',1);
     sz2  = size(imCD31(:,:,1)',2);
 
@@ -61,6 +60,7 @@ for j = 7 %1: length(both_CD31) % 7
     % im_Hypo_Crop = cell(1,noXDirection*noYDirection); % pre-allocate memory
     count = 1;
 
+    % pre-allocate memory
     alpha_full = zeros(sz2, sz1);
     beta_full = zeros(sz2, sz1);
     gamma_full = zeros(sz2, sz1);
@@ -72,28 +72,19 @@ for j = 7 %1: length(both_CD31) % 7
 
 
 
-    [ memory_in_use ] = monitor_memory_whos();
-    fprintf('Memory in use after loading density is %d: GB \n', memory_in_use);
-
-
-
-
+    % loop through patches
     while(y+height<=sz2)
         while(x+width<=sz1)
 
 
+            % get the crop image
             imCrop{count} = imcrop(imCD31,[x, y, width, height]);
             testIm = imCrop{count}; % 53. 55, 25,44
             testIm_BV = testIm(:,:,1);
             testIm_Hy = testIm(:,:,2);
 
 
-
-
-            [ memory_in_use ] = monitor_memory_whos();
-            fprintf('Memory in use before working on patches is %d GB: \n', memory_in_use);
-
-
+            % check for non-empty patch
             V_max = max(testIm_BV(:));
             Hypo_max = max(testIm_Hy(:));
 
@@ -119,7 +110,6 @@ for j = 7 %1: length(both_CD31) % 7
 
             else
 
-
                 testIm_BV = testIm(:,:,1);
                 testIm_BV(testIm_BV<=25) = 0;
 
@@ -136,10 +126,12 @@ for j = 7 %1: length(both_CD31) % 7
 
 
 
+                % get the sorted params
                 filtered_hs = get_the_sorted_params(hscore,numNonZero,trainedParams);
 
 
 
+                % get the mean of the params
                 alpha_patch = mean(filtered_hs.alpha);
                 beta_patch = mean(filtered_hs.beta);
                 gamma_patch = mean(filtered_hs.gamma);
@@ -148,13 +140,11 @@ for j = 7 %1: length(both_CD31) % 7
                 k1_patch = mean(filtered_hs.k1);
                 D_patch = mean(filtered_hs.D);
 
-                if(isnan(alpha_patch))
-                    return;
-                end
-
+              
                 % Assign the het values
                 hetPlotValues(top_left_y:bottom_right_y, top_left_x:bottom_right_x) = hetFullImage(2,count);
 
+                % assign the mean of similar patches to each patch
                 alpha_full(top_left_y:bottom_right_y, top_left_x:bottom_right_x) = alpha_patch;
                 beta_full(top_left_y:bottom_right_y, top_left_x:bottom_right_x) = beta_patch;
                 gamma_full(top_left_y:bottom_right_y, top_left_x:bottom_right_x) = gamma_patch;
@@ -185,22 +175,7 @@ end
 
 
 
-
-
-
-
-
 %%
-% clearvars -except  imCD31 imCA9 trainedParams sz1 sz2 hetPlotValues
-% alpha_full = mean(trainedParams.alpha) + zeros(sz2, sz1);
-% beta_full = mean(trainedParams.beta) + zeros(sz2, sz1);
-% gamma_full = mean(trainedParams.gamma) + zeros(sz2, sz1);
-% Ol_full = mean(trainedParams.Ol) + zeros(sz2, sz1);
-% Oh_full = mean(trainedParams.Oh) + zeros(sz2, sz1);
-% k1_full = mean(trainedParams.k1) + zeros(sz2, sz1);
-% D_full = mean(trainedParams.D) + zeros(sz2, sz1);
-%%
-
 
 figure
 imagesc(D_full);
@@ -234,7 +209,7 @@ Im_Hy(Im_Hy<=25) = 0;
 
 
 
-%%
+%% discretize the domain and get the parameters on that grid
 
 
 dx = 10;
@@ -345,39 +320,17 @@ saveas(f,strcat('Plots/Plots_Valid/Png_files/BV',f_p, '.png'));
 
 %%
 
-% AA = [1,2,3,0.1,4];
-% th1 = [1,2,3,0.1,5];
-% mask11 = AA>=th1;
-% BB = AA;
-% BB(mask11) = 0;
-
 hypoxia_calculated = gamma.*(exp(-k1.* sol_O(:)) ) ;
-% hypoxia_calculated = gamma* (k1./ (k1 + exp(k2*(O2 - k3))));
-%
-mask = sol_O(:)<=Ol | sol_O(:)>=Oh; %O2>=O_h;%
+
+mask = sol_O(:)<=Ol | sol_O(:)>=Oh;
 hypoxia_calculated(mask) = 0;
 
-
-%
-% hypoxia_calculated = hypoxia_calculated/(max(eps, max(hypoxia_calculated(:))));
 %%
 hypoxia_calculated = reshape(hypoxia_calculated,Lx,Ly);
 
-%%
-
-% f = figure;
-% % f.Visible = 'off';
-% % ax1 = axes;
-% surf(x,y,hypoxia_calculated');
-% view(0,90)
-% shading interp
-% colormap(flipud(hot))
-% colorbar
-% axis tight
-% title('Predicted Hypoxia without cell', FontSize=16);
 
 
-%%
+%% get the 
 %
 % imDAPI = imread('../../Image_Data/Validating_data/Pancreas_1087_DAPI_IFC.tif');
 % testIm_DAPI = imDAPI(:,:,3);
@@ -452,6 +405,6 @@ saveas(f,strcat('Plots/Plots_Valid/Png_files/DAPI',f_p, '.png'));
 
 
 %%
-Validation_error = ((norm(hypoxia_calculated - hypoxia_data))^2)/sqrt(sz1*sz2)
+Validation_error = ((norm(hypoxia_calculated - hypoxia_data))^2)/sqrt(sz1*sz2);
 
 toc

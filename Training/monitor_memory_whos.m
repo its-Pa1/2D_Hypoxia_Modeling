@@ -3,6 +3,9 @@ function [memory_in_use] = monitor_memory_whos()
 % inside the base workspace. It calculates and returns the total memory
 % usage in gigabytes (GB).
 
+ % This function is obtained from 
+ % https://fr.mathworks.com/matlabcentral/answers/97560-how-can-i-monitor-how-much-memory-matlab-is-using
+
 % Get information about variables in the base workspace
 mem_elements = evalin('base', 'whos');
 

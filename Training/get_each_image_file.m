@@ -1,5 +1,6 @@
 function [imBV, imHypo, sample_name] = get_each_image_file(both_CD31, both_CA9, j)
 % GET_EACH_IMAGE_FILE reads and loads CD31 and CA9 images for a specific index.
+
 %   [imBV, imHypo, sample_name] = GET_EACH_IMAGE_FILE(both_CD31, both_CA9, j)
 %   reads and returns CD31 and CA9 images along with the sample name for the
 %   specified index 'j' from the input file paths.

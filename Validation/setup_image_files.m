@@ -2,7 +2,7 @@ function [both_CD31, both_CA9] = setup_image_files()
 
 
 %image folder
-imFolder = '../../../Image_Data/Validating_data';
+imFolder = '../Image_data/Validating_data';
 
 % Check to make sure that folder actually exists.  Warn user if it doesn't.
 if ~isfolder(imFolder)

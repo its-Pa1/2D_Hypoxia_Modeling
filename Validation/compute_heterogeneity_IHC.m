@@ -1,6 +1,12 @@
 function [numNonZero, het_index] = compute_heterogeneity_IHC(BVimage)
-
-%%
+% COMPUTE_HETEROGENEITY_IHC computes heterogeneity indices for IHC images.
+%
+% INPUT:
+%   BVimage: IHC image matrix
+%
+% OUTPUT:
+%   numNonZero: Ratio of non-zero elements to total pixels
+%   het_index: Claramunt heterogeneity index
 
 
 %%

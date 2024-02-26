@@ -1,5 +1,6 @@
 function [im_BV_Crop, im_Hypo_Crop] = get_density_patches(imRaw_CD31, imRaw_CA9)
 % GET_DENSITY_PATCHES extracts patches from CD31 and CA9 images for analysis.
+
 %   [im_BV_Crop, im_Hypo_Crop] = GET_DENSITY_PATCHES(imRaw_CD31, imRaw_CA9)
 %   takes raw CD31 and CA9 images as input and extracts patches for further
 %   analysis. The function divides the images into a specified number of
