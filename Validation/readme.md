@@ -34,8 +34,11 @@ It performs image registration and density extraction for CD31 and CA9 images of
 ### apply_IR_density_mask_II
 It performs image registration and density extraction for CD31 and CA9 images of IHC types.
 
-### compute_heterogeneity_IHC(BVimage)
+### compute_heterogeneity_IHC
 It computes heterogeneity indices for IHC images.
+
+### pairwise_distance
+% Calculate pairwise distances between points.
 
 ### get_nuclei_density
 It applies kernel density estimate to binarized DAPI stained image

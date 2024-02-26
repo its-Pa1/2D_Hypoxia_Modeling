@@ -1,5 +1,12 @@
 function [] = makeSeparateImage_RW(f_p,imBV,imRaw, index)
-
+% This function generates separate plot for each patch shwoing blood
+% vessels in red with white background
+%
+% Input:
+% - f_p: File name or identifier.
+% - imBV: Blood vessel image.
+% - imRaw: Raw RGB image.
+% - index: Index to exclude a color channel.
 if not(isfolder('Plots/Plots_RW'))
     mkdir('Plots/Plots_RW')
 end

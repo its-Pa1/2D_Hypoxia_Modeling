@@ -1,3 +1,6 @@
+
+% This scripts scan through each patch of a sample and make a video to
+% visualize the zoomed version of a patch
 % Clear workspace, command window, and close all figures
 clear all;
 clc;

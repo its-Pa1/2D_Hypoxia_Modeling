@@ -1,4 +1,6 @@
-# Figure 10, 11 & 12
+# Figure 8a, 8b & S3
+# This python scrips generates the violin plots to show the distribution of the trained paramters and 
+# the sorted parameters for two patches.
 
 import numpy as np
 # import matplotlib

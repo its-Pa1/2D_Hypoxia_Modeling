@@ -1,7 +1,9 @@
 clear all;
 clc
 close all;
-% figure 2, 4a, 4b, 5a, 5b
+
+% This script perfomes multiple tasts and generates
+% figure 2, 4a, 4b, 5a, 5b of the article.
 
 tic
 

@@ -1,8 +1,8 @@
 clear all;
 clc
 close all;
-
-% figure 6
+% This scripts plots the 1D hypoxia plots
+% as shwon in  figure 6 of the article.
 x = 0:0.01:1;
 
 xl = 0.1;

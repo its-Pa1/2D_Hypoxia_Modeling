@@ -1,8 +1,8 @@
 clear all
 clc
 close all
-
-% figure 1
+% This script visualize the images shown in
+% figure 1 of the article
 
 fullFileName_IFC = '../../../Image_Data/TileScan 3_Pancreas_20-3-1087_Merged.tif';
 imRaw_IFC = ((imread(fullFileName_IFC)));

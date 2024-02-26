@@ -2,7 +2,9 @@ clear all;
 clc;
 close all;
 
-% figure 3
+% This scripts plots all the marker densities.
+
+% as shown in figure 3 of the article.
 
 tic
 
@@ -113,18 +115,6 @@ end
 if not(isfolder('Plots/Plots_den/Png_files'))
     mkdir('Plots/Plots_den/Png_files')
 end
-%%
-% figure
-% imshow(rgbImage_DAPI)
-% 
-% %%
-% figure
-% imagesc(cell_den');
-% colormap(flipud(hot))
-% colorbar
-% set(gca,'YDir','normal');
-% 
-% 
 
 
 %%

@@ -1,4 +1,12 @@
 function [] = makeSeparateConnectComColoring(f_p, imBV,imRaw, index)
+% This function generates separate colors for each C_i, as defined in the
+% article
+%
+% Input:
+% - f_p: File name or identifier.
+% - imBV: Blood vessel image.
+% - imRaw: Raw RGB image.
+% - index: Index to exclude a color channel.
 
 if not(isfolder('Plots/Plots_CC_Color'))
     mkdir('Plots/Plots_CC_Color')

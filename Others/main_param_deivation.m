@@ -1,6 +1,8 @@
 clear all
 clc;
-% figure 14
+% This script generates the plots included in
+% figure 9 and 10 of the article
+
 close all;
 addpath('../');
 imBV = imread('../../../Image_Data/Validating_data/Pancreas_1087_CD31_IFC.tif');

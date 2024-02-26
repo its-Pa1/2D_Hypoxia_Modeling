@@ -2,7 +2,8 @@
 clear all;
 clc
 close all;
-% figure 5c
+% This script plot the patchwise heterogenity scaore
+% as shwon in figure 5c of the article.
 
 tic
 
