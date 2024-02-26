@@ -6,40 +6,49 @@ The primary MATLAB script that orchestrates the simulation of the 2-D model in d
 ## Functions
 The functions utilized are listed below, presented in the sequence of their application.
 
-### `createMask_i(i = sample name)`
-Thresholds an image to select the CD31 OR CA9 staining using auto-generated code
-from the colorThresholder app in MATLAB.
+### setup_image_files
+It identifies and organizes image files for CD31, CA9 and DAPI markers.
 
-### find_density_mask
-Function for finding density masks.
+### get_each_image_file
+It reads and loads marker images for a specific index.
 
 ### get_density_patches
-Reads the TIFF image and calculates marker densities for chosen patches.
+It extracts patches from CD31 and CA9 images for analysis.
 
-### get_density_patchesII
-Reads the TIFF image and calculates marker densities for a second set of patches
-
-### set_const_diff
-Generates a discretized matrix of linear Partial Differential Equation (PDE) for O2.
-
-### linear_PDE_loss_fun
-Loss function for the linear model.
-### non_linear_PDE_loss_fun.m
-Loss function for the nonlinear model.
-
-### obj_fun_PDE.m
-Stores the nonlinear system obtained from spatial discretization.
 ### get_optimization
 Calls the chosen MATLAB optimizer, yielding parameters for the global minimum
 of the loss function. It also stores other minima and their corresponding function values.
 
+### linear_PDE_loss_fun_expo
+Loss function for the linear model with exponential form for hypoxia.
+
+### linear_PDE_loss_fun_gen
+Loss function for the linear model with sigmoidal form for hypoxia.
+
+### non_linear_PDE_loss_fun.m
+Loss function for the nonlinear model.
+
+### chooseDisznStep
+It calculate the step length from the chosen number of points for the domain discretization
+
+### set_const_diff
+Generates a discretized matrix of linear Partial Differential Equation (PDE) for oxygen distribution
+
+
+### obj_fun_PDE.m
+Stores the nonlinear system obtained from spatial discretization.
+
+
 ### solve_with_obtained_param
 Solves the PDE for O2 and the algebraic equation of hypoxia with the obtained parameters.
 
-### plot_fval.m
-Plots the function value (fval) and other stored parameters.
+### post_processing
+It performs post-processing for each patch simulation.
 
-## Method
+### monitor_memory_whos
+It uses the WHOS command to evaluate the memory usage inside the base workspace.
+
+## Methods Applied
 For comprehensive information on methods, encompassing data processing, quantification of blood vessel diversity, mathematical modeling of oxygen and hypoxia, numerical simulation of PDE, parameter estimation, and validation, please consult the "Methods" section in this paper.
 
 
