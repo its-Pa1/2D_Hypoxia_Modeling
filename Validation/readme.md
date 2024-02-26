@@ -1,21 +1,21 @@
 # Main Files/Scripts
 
-## main_whole_sample_1087_IFC.m
+### main_whole_sample_1087_IFC.m
 This script perform the validation for IFC 1087 whole sample 
 
-## main_whole_sample_1905_IHC.m
+### main_whole_sample_1905_IHC.m
 This script perform the validation for IHC 1905 whole sample 
 
-## Patch_validation_IFC_1087_57.m
+### Patch_validation_IFC_1087_57.m
 This script perform the validation for IFC 1087 for patch number 57 
 
-## Patch_validation_IFC_1090_88.m
+### Patch_validation_IFC_1090_88.m
 This script perform the validation for IFC 1090 for patch number 88 
 
-## Patch_validation_IHC_1087_3.m
+### Patch_validation_IHC_1087_3.m
 This script perform the validation for IHC 1087 for patch number 3 
 
-## Patch_validation_IHC_0721_3.m
+### Patch_validation_IHC_0721_3.m
 This script perform the validation for IHC 0721 for patch number 3 
 
 ## Functions
