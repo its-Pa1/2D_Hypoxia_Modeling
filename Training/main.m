@@ -81,7 +81,7 @@ if checkResponse
                 % Set optimization parameters
                 opt_solver = 'matlab_ms'; % 'matlab_ms_with_lsqnonlin'; % 'matlab_gs'; % 'matlab_ms'; % 'matlab_ms_with_lsqnonlin';
                 eq_type_str = 'linear_expo'; % 'linear_expo'; %linear_gen %nonlinear
-                additionStr = '_Binary';
+                additionStr = '';
                 numOptiPoint = 50;
                 nworkers = 4;
                 numPts = 350;
