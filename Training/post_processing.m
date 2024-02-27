@@ -106,7 +106,7 @@ switch hypo_model_type
 
 
         tableFolderName = strcat('ExportTables_expo', additionStr);
-        tableFileName = strcat('EstimatedParamTable',hypo_model_type, additionStr, '.mat');
+        tableFileName = strcat('EstimatedParamTable','_',hypo_model_type, additionStr, '.mat');
         tableFullFileName = fullfile(tableFolderName,tableFileName);
 
         if not(isfolder(tableFolderName))
