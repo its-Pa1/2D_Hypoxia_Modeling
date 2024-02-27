@@ -204,7 +204,7 @@ sz1 = size(X,1);
 sz2 = size(X,2);
 
 %% -------------------------- save the workspace ------------------------
-wFolder = strcat('EstiParams_without_cells_',hypo_model_type, additionStr);
+wFolder = strcat('EstiParams',hypo_model_type, additionStr);
 if not(isfolder(wFolder))
     mkdir(wFolder)
 end
