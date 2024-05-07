@@ -33,7 +33,7 @@ Feel free to explore the respective directories to delve into specific aspects o
 
 
 ## Instruction to use
-Retrieve the image files for both training and validation from the provided link (10.5281/zenodo.10796880) in the article, then transfer them to the corresponding subdirectories within the "Image_folder" directory.
+Retrieve the image files for both training and validation from the provided link (https://doi.org/10.5281/zenodo.10796880) in the article, then transfer them to the corresponding subdirectories within the "Image_folder" directory.
 
 Each directory contains a dedicated readme file to facilitate navigation.
 
