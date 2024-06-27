@@ -1,6 +1,6 @@
 # Repository Overview
 
-Welcome to this GitHub repository, which houses the code corresponding to the article titled "Deciphering Oxygen Distribution and Hypoxia Profiles in the Tumor Microenvironment: A Data-Driven Mechanistic Modeling Approach", DOI: https://doi.org/10.1101/2024.03.04.583326
+Welcome to this GitHub repository, which houses the code corresponding to the article titled "Deciphering Oxygen Distribution and Hypoxia Profiles in the Tumor Microenvironment: A Data-Driven Mechanistic Modeling Approach", DOI: https://iopscience.iop.org/article/10.1088/1361-6560/ad524a
 
 ## Key Features
 
